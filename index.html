@@ -388,7 +388,7 @@ async function generate() {
       method: "POST",
       headers: { "Content-Type": "application/json", "Authorization": "Bearer " + String.fromCharCode(115,107,45,111,114,45,118,49,45,56,48,54,54,48,99,98,102,98,52,56,53,97,54,100,56,56,50,52,54,48,49,100,50,52,97,55,102,53,52,97,50,57,48,99,53,53,98,56,99,55,48,53,54,102,50,54,52,100,100,48,51,102,53,98,56,99,54,54,53,102,51,54,99), "HTTP-Referer": "https://linked-flow-tavy.vercel.app", "X-Title": "LinkedFlow" },
       body: JSON.stringify({
-        model: "google/gemma-3-27b-it:free",
+        model: "deepseek/deepseek-r1-0528:free",
         max_tokens: 1000,
         messages: [{ role: "user", content: activeTool.prompt(fieldValues) }]
       })
