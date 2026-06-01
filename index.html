@@ -384,17 +384,17 @@ async function generate() {
   showLoading();
 
   try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
+    const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", "Authorization": "Bearer " + "sk-or-v1-80660cbfb485" + "a6d8824601d24a7f54a290c55b8c7056f264dd03f5b8c665f36c", "HTTP-Referer": "https://linked-flow-tavy.vercel.app", "X-Title": "LinkedFlow" },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
+        model: "meta-llama/llama-3.3-70b-instruct:free",
         max_tokens: 1000,
         messages: [{ role: "user", content: activeTool.prompt(fieldValues) }]
       })
     });
     const data = await res.json();
-    outputText = data.content?.map(b => b.text || "").join("\n") || "";
+    outputText = data.choices?.[0]?.message?.content || "";
     document.getElementById("outputBox").innerHTML = `<pre class="output-text">${escapeHtml(outputText)}</pre>`;
     document.getElementById("copyBtn").style.display = "block";
   } catch (e) {
